@@ -1,0 +1,13 @@
+﻿@model ICollection<SellBook.Models.PublicationViewModel>
+
+@{ 
+    var model = Model.ToList();
+}
+
+@if(model.Count == 0)
+{
+   <div class="text-danger">Няма Намерени Резултати</div>
+}else
+{
+    <div class="text-info">@Model.Count</div>
+}
