@@ -24,6 +24,10 @@ namespace SellBook.Models.Publication
         [Display(Name = "Категория")]
         public Guid CategoryId { get; set; }
 
+        [Required(ErrorMessage = "Please select file.")]
+        [Display(Name = "Browse File")]
+        public HttpPostedFileBase[] files { get; set; }
+
         [Required]
         [Display(Name = "Под Категория")]
         public Guid SubCategoryId { get; set; }

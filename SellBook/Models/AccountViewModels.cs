@@ -87,6 +87,11 @@ namespace SellBook.Models
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Телефоннен Номер")]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [Display(Name = "Област")]
         public System.Guid RegionId { get; set; }
 

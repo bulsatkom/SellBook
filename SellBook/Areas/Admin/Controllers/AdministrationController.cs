@@ -12,11 +12,16 @@ namespace SellBook.Areas.Admin.Controllers
     {
         private readonly IRegionService regionService;
         private readonly ICityService cityService;
+        private readonly ICategoryService categoryService;
+        private readonly ISubCategoryService SubCategoryService;
 
-        public AdministrationController(IRegionService regionService, ICityService cityService)
+        public AdministrationController(IRegionService regionService, ICityService cityService,
+            ICategoryService categoryService, ISubCategoryService SubCategoryService)
         {
             this.regionService = regionService;
             this.cityService = cityService;
+            this.categoryService = categoryService;
+            this.SubCategoryService = SubCategoryService;
         }
 
         public ActionResult Index()
@@ -82,6 +87,67 @@ namespace SellBook.Areas.Admin.Controllers
                 }
 
                 ModelState.AddModelError("Dublicate", "Този Град/Село вече Съществува в този район!!!"); 
+            }
+
+            return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AddCategory()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCategory(AddCategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!this.categoryService.IsContains(model.Name))
+                {
+                    this.categoryService.Add(model.Name);
+
+                    return this.RedirectToAction("Index");
+                }
+
+                ModelState.AddModelError("Dublicate", "Тази Категория вече Съществува!!!");
+            }
+
+            return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AddSubCategory()
+        {
+            var model = new AddSubCategoryViewModel();
+
+            this.categoryService.GetAll().ToList().ForEach(x =>
+            {
+                model.Categories.Add(new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                });
+            });
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSubCategory(AddSubCategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if(!this.SubCategoryService.IsContains(model.Name, model.SelectedCategory))
+                {
+                    this.SubCategoryService.Add(model.Name, model.SelectedCategory);
+
+                    return this.RedirectToAction("Index");
+                }
+
+                ModelState.AddModelError("Dublicate", "Тази ПодКатегория вече Съществува в тази Категория!!!");
             }
 
             return this.View(model);

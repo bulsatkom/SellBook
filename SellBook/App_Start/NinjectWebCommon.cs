@@ -68,6 +68,9 @@ namespace SellBook.App_Start
             kernel.Bind<IPublicationService>().To<PublicationService>();
             kernel.Bind<IRegionService>().To<RegionService>();
             kernel.Bind<ICityService>().To<CityService>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();
+            kernel.Bind<ISubCategoryService>().To<SubCategoryService>();
+            kernel.Bind<IImageService>().To<ImageService>();
         }        
     }
 }

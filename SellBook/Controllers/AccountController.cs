@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using SellBook.Models;
 using SellBook_Data;
 using SellBook_Services.Interfaces;
+using System.IO;
 
 namespace SellBook.Controllers
 {
@@ -169,10 +170,15 @@ namespace SellBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,  };
+                var user = new ApplicationUser { UserName = model.FirstName + " " + model.LastName, Email = model.Email,
+                    CityId = model.CityId, FirstName = model.FirstName, LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber, RegionId = model.RegionId };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    Directory.CreateDirectory(Server.MapPath("/") + "/Images/" + user.UserName);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -211,18 +217,19 @@ namespace SellBook.Controllers
             return View();
         }
 
-        public ActionResult GetRegions(string iso3)
+        [AllowAnonymous]
+        public ActionResult GetCities(string region)
         {
             var list = new System.Collections.Generic.List<SelectListItem>();
 
-            var cities = this.cityService.GetByRegionId(Guid.Parse(iso3)).ToList();
+            var cities = this.cityService.GetByRegionId(Guid.Parse(region)).ToList();
 
             foreach (var city in cities)
             {
                 list.Add(new SelectListItem()
                 {
                     Value = city.Id.ToString(),
-                    Text = city.Name,
+                    Text = (city.IsCity == true ? "град " : "село ") + city.Name,
                 });
             }
 

@@ -1,9 +1,5 @@
 ﻿@model SellBook.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
 
-<h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -30,15 +26,21 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.RegionId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.RegionId, Model.Regions, new { @class = "form-control", id = "Country" })
+            @Html.DropDownListFor(m => m.RegionId, Model.Regions, new { @class = "form-control", id = "Region" })
         </div>
     </div>
         <div class="form-group">
             @Html.LabelFor(m => m.CityId, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.CityId, Model.Cities, new { @class = "form-control", @id = "Region" })
+                @Html.DropDownListFor(m => m.CityId, Model.Cities, new { @class = "form-control", @id = "City" })
             </div>
         </div>
     <div class="form-group">
@@ -64,19 +66,19 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-        $('#Country').change(function () {
-            var selectedCountry = $("#Country").val();
-            var regionsSelect = $('#Region');
-            regionsSelect.empty();
-            if (selectedCountry != null && selectedCountry != '') {
-                $.getJSON('@Url.Action("GetRegions")', { iso3: selectedCountry }, function (regions) {
+        $('#Region').change(function () {
+            var selectedRegion = $("#Region").val();
+            var citySelect = $('#City');
+            citySelect.empty();
+            if (selectedRegion != null && selectedRegion != '') {
+                $.getJSON('@Url.Action("GetCities")', { region: selectedRegion }, function (regions) {
                     if (regions != null && !jQuery.isEmptyObject(regions)) {
-                        regionsSelect.append($('<option />', {
+                        citySelect.append($('<option />', {
                             value: null,
                             text: ""
                         }));
                         $.each(regions, function (index, region) {
-                            regionsSelect.append($('<option />', {
+                            citySelect.append($('<option />', {
                                 value: region.Value,
                                 text: region.Text
                             }));

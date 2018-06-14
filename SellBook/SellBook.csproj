@@ -186,8 +186,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Admin\Models\Administration\AddCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administration\AddCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Administration\AddRegionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Administration\AddSubCategoryViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Home\TestViewModel.cs" />
     <Compile Include="Models\PublicationViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -217,6 +220,8 @@
     <Content Include="Areas\Admin\Views\Administration\AddRegion.cshtml" />
     <Content Include="Areas\Admin\Views\Administration\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Administration\AddCity.cshtml" />
+    <Content Include="Areas\Admin\Views\Administration\AddCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Administration\AddSubCategory.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,6 +270,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\HomePublicationPartial.cshtml" />
     <Content Include="Views\Publication\AddPublication.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

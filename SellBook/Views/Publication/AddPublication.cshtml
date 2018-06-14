@@ -1,6 +1,6 @@
 ﻿@model SellBook.Models.Publication.AddPublicationViewModel
 
-@using (Html.BeginForm("AddPublication", "Publication", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("AddPublication", "Publication", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     <h2>@ViewBag.Title.</h2>
 
@@ -49,6 +49,21 @@
             @Html.LabelFor(m => m.SubCategoryId, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.SubCategoryId, Model.SubCategories, new { @class = "form-control", @id = "Region" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Button with data-target
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="well">
+                4o4o
             </div>
         </div>
         <div class="form-group">
