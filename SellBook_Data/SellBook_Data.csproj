@@ -60,6 +60,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
+    <Compile Include="FavouritePublication.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="ISellbookDbContext.cs" />
     <Compile Include="Chat.cs" />
@@ -75,6 +76,10 @@
     <Compile Include="Migrations\201806120922043_Add-Image-Table-And-Some-Fixes.cs" />
     <Compile Include="Migrations\201806120922043_Add-Image-Table-And-Some-Fixes.Designer.cs">
       <DependentUpon>201806120922043_Add-Image-Table-And-Some-Fixes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806172340559_Added-FavouritePublicationTable.cs" />
+    <Compile Include="Migrations\201806172340559_Added-FavouritePublicationTable.Designer.cs">
+      <DependentUpon>201806172340559_Added-FavouritePublicationTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Publication.cs" />
@@ -96,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806120922043_Add-Image-Table-And-Some-Fixes.resx">
       <DependentUpon>201806120922043_Add-Image-Table-And-Some-Fixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806172340559_Added-FavouritePublicationTable.resx">
+      <DependentUpon>201806172340559_Added-FavouritePublicationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

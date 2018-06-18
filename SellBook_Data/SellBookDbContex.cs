@@ -22,6 +22,8 @@ namespace SellBook_Data
 
         public IDbSet<City> City { get; set; }
 
+        public IDbSet<FavouritePublication> FavouritePublication { get; set; }
+
         public IDbSet<Image> Image { get; set; }
 
         public IDbSet<Message> Message { get; set; }

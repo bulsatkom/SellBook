@@ -7,7 +7,11 @@
 @if(model.Count == 0)
 {
    <div class="text-danger">Няма Намерени Резултати</div>
-}else
+}
+else
 {
-    <div class="text-info">@Model.Count</div>
+    foreach (var item in model)
+    {
+        <img src="@Url.Content(item.Image)" width="200" height="200" />
+    }
 }

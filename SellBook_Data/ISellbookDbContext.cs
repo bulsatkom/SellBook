@@ -25,6 +25,8 @@ namespace SellBook_Data
 
         IDbSet<Image> Image { get; set; }
 
+        IDbSet<FavouritePublication> FavouritePublication { get; set; }
+
         int SaveChanges();
     }
 }

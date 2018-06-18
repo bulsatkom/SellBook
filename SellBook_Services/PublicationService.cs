@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SellBook_Data;
+using System.Data.Entity;
 
 namespace SellBook_Services
 {
@@ -19,7 +20,7 @@ namespace SellBook_Services
 
         public ICollection<Publication> GetLatest()
         {
-            return this.context.Publication.OrderByDescending(x => x.AddedOn).Take(20).ToList();
+            return this.context.Publication.OrderByDescending(x => x.AddedOn).Take(20).Include(x => x.Images).ToList();
         }
 
         public Guid Add(Guid userId, Guid categoryID, Guid subCategory, string title, string description, bool isContracting, string phoneNumber,

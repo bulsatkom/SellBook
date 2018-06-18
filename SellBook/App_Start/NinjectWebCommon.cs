@@ -13,6 +13,7 @@ namespace SellBook.App_Start
     using SellBook_Data;
     using SellBook_Services.Interfaces;
     using SellBook_Services;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public static class NinjectWebCommon 
     {
@@ -64,13 +65,15 @@ namespace SellBook.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ISellbookDbContext>().To<SellBookDbContex>();
+            kernel.Bind<ISellbookDbContext>().To<SellBookDbContex>().InRequestScope();
+            kernel.Bind<IdentityDbContext<ApplicationUser>>().To<SellBookDbContex>().InRequestScope();
             kernel.Bind<IPublicationService>().To<PublicationService>();
             kernel.Bind<IRegionService>().To<RegionService>();
             kernel.Bind<ICityService>().To<CityService>();
             kernel.Bind<ICategoryService>().To<CategoryService>();
             kernel.Bind<ISubCategoryService>().To<SubCategoryService>();
             kernel.Bind<IImageService>().To<ImageService>();
+            kernel.Bind<IUserService>().To<UserService>();
         }        
     }
 }
