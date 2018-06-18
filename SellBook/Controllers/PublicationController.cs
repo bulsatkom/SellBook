@@ -77,6 +77,14 @@ namespace SellBook.Controllers
             return this.View(model);
         }
 
+        public ActionResult Details(Guid Id)
+        {
+            var publication = this.publicationService.GetPublicationById(Id);
+
+
+            return this.View();
+        }
+
         public ActionResult GetRegions(string iso3)
         {
             var list = new List<SelectListItem>();

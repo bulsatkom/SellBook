@@ -13,5 +13,7 @@ namespace SellBook_Services.Interfaces
 
         Guid Add(Guid userId, Guid categoryID, Guid subCategory, string title, string description, bool isContracting, string phoneNumber,
             double price);
+
+        Publication GetPublicationById(Guid Id);
     }
 }

@@ -49,5 +49,10 @@ namespace SellBook_Services
 
             return id;
         }
+
+        public Publication GetPublicationById(Guid Id)
+        {
+            return this.context.Publication.FirstOrDefault(x => x.Id == Id);
+        }
     }
 }
