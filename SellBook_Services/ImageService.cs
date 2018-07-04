@@ -14,6 +14,11 @@ namespace SellBook_Services
 
         public ImageService(ISellbookDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Context cannot be null or empty");
+            }
+
             this.context = context;
         }
 

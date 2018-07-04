@@ -1,0 +1,23 @@
+﻿@model SellBook.Models.Account.MyAccountViewModel
+
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#publication" aria-controls="publication" role="tab" data-toggle="tab">Обяви</a></li>
+        <li role="presentation"><a href="#Messages" aria-controls="Messages" role="tab" data-toggle="tab">Съобщения</a></li>
+        <li role="presentation"><a href="#Settings" aria-controls="Settings" role="tab" data-toggle="tab">Настройки</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="publication">@Html.Partial("MyAccountPublicationPartial", Model.publications)</div>
+        <div role="tabpanel" class="tab-pane" id="Messages">Съобщения</div>
+        <div role="tabpanel" class="tab-pane" id="Settings">Акаунт Настройки</div>
+    </div>
+</div>
+
+@*@Html.Partial("MyAccountPublicationPartial", Model.publications)*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/junobtrusive")
+}

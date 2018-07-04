@@ -57,13 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalsPublicationDetail.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="ChildrensPublicationDetail.cs" />
     <Compile Include="City.cs" />
+    <Compile Include="ClothesPublicationDetail.cs" />
+    <Compile Include="electronicsPublicationDetail.cs" />
+    <Compile Include="ExcursionsAndHolidaysPublicationDetail.cs" />
     <Compile Include="FavouritePublication.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="ISellbookDbContext.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="InitialPublicationDetail.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Migrations\201806061709571_inital.cs" />
     <Compile Include="Migrations\201806061709571_inital.Designer.cs">
@@ -81,12 +87,56 @@
     <Compile Include="Migrations\201806172340559_Added-FavouritePublicationTable.Designer.cs">
       <DependentUpon>201806172340559_Added-FavouritePublicationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806182324040_Add-Service-And-WorkPublicationDetail-Tables.cs" />
+    <Compile Include="Migrations\201806182324040_Add-Service-And-WorkPublicationDetail-Tables.Designer.cs">
+      <DependentUpon>201806182324040_Add-Service-And-WorkPublicationDetail-Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806211313193_rename_Service_Table.cs" />
+    <Compile Include="Migrations\201806211313193_rename_Service_Table.Designer.cs">
+      <DependentUpon>201806211313193_rename_Service_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806222246297_Add-few-tables.cs" />
+    <Compile Include="Migrations\201806222246297_Add-few-tables.Designer.cs">
+      <DependentUpon>201806222246297_Add-few-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806240029169_fix.cs" />
+    <Compile Include="Migrations\201806240029169_fix.Designer.cs">
+      <DependentUpon>201806240029169_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806241647383_update-clothes.cs" />
+    <Compile Include="Migrations\201806241647383_update-clothes.Designer.cs">
+      <DependentUpon>201806241647383_update-clothes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806242257542_update-clothessss.cs" />
+    <Compile Include="Migrations\201806242257542_update-clothessss.Designer.cs">
+      <DependentUpon>201806242257542_update-clothessss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281514392_Fix_Category_Table.cs" />
+    <Compile Include="Migrations\201806281514392_Fix_Category_Table.Designer.cs">
+      <DependentUpon>201806281514392_Fix_Category_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281633525_Fix_Category_Table_2.cs" />
+    <Compile Include="Migrations\201806281633525_Fix_Category_Table_2.Designer.cs">
+      <DependentUpon>201806281633525_Fix_Category_Table_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806291630573_Fix_Publication_Table.cs" />
+    <Compile Include="Migrations\201806291630573_Fix_Publication_Table.Designer.cs">
+      <DependentUpon>201806291630573_Fix_Publication_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807021157454_Fix_Publication_Table1.cs" />
+    <Compile Include="Migrations\201807021157454_Fix_Publication_Table1.Designer.cs">
+      <DependentUpon>201807021157454_Fix_Publication_Table1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Publication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="SellBookDbContex.cs" />
+    <Compile Include="ServicePublicationDetail.cs" />
+    <Compile Include="ShoesPublicationDetail.cs" />
     <Compile Include="SubCategory.cs" />
+    <Compile Include="SubSubCategory.cs" />
+    <Compile Include="WorkPublicationDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,6 +154,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806172340559_Added-FavouritePublicationTable.resx">
       <DependentUpon>201806172340559_Added-FavouritePublicationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806182324040_Add-Service-And-WorkPublicationDetail-Tables.resx">
+      <DependentUpon>201806182324040_Add-Service-And-WorkPublicationDetail-Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806211313193_rename_Service_Table.resx">
+      <DependentUpon>201806211313193_rename_Service_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806222246297_Add-few-tables.resx">
+      <DependentUpon>201806222246297_Add-few-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806240029169_fix.resx">
+      <DependentUpon>201806240029169_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806241647383_update-clothes.resx">
+      <DependentUpon>201806241647383_update-clothes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806242257542_update-clothessss.resx">
+      <DependentUpon>201806242257542_update-clothessss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281514392_Fix_Category_Table.resx">
+      <DependentUpon>201806281514392_Fix_Category_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281633525_Fix_Category_Table_2.resx">
+      <DependentUpon>201806281633525_Fix_Category_Table_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806291630573_Fix_Publication_Table.resx">
+      <DependentUpon>201806291630573_Fix_Publication_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807021157454_Fix_Publication_Table1.resx">
+      <DependentUpon>201807021157454_Fix_Publication_Table1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

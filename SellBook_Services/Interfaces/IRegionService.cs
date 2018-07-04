@@ -14,5 +14,7 @@ namespace SellBook_Services.Interfaces
         void Add(string name);
 
         ICollection<Region> GetAll();
+
+        string GetNameById(Guid id);
     }
 }

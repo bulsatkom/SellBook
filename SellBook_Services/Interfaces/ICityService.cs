@@ -14,5 +14,9 @@ namespace SellBook_Services.Interfaces
         void Add(Guid regionId, string cityName, bool IsVillage);
 
         ICollection<City> GetByRegionId(Guid Id);
+
+        string GetNameById(Guid Id);
+
+        City GetCityById(Guid id);
     }
 }

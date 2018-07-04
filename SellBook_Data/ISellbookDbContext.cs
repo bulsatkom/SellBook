@@ -27,6 +27,26 @@ namespace SellBook_Data
 
         IDbSet<FavouritePublication> FavouritePublication { get; set; }
 
+        IDbSet<ServicePublicationDetail> Service { get; set; }
+
+        IDbSet<WorkPublicationDetail> WorkPublicationDetail { get; set; }
+
+        IDbSet<SubSubCategory> SubSubCategory { get; set; }
+
+        IDbSet<AnimalsPublicationDetail> AnimalsPublicationDetail { get; set; }
+
+        IDbSet<ChildrensPublicationDetail> ChildrenPublicationDetail { get; set; }
+
+        IDbSet<ClothesPublicationDetail> ClothesPublicationDetail { get; set; }
+
+        IDbSet<electronicsPublicationDetail> ElectronicsPublicationDetail { get; set; }
+
+        IDbSet<ExcursionsAndHolidaysPublicationDetail> ExcursionsAndHolidaysPublicationDetail { get; set; }
+
+        IDbSet<InitialPublicationDetail> InitialPublicationDetail { get; set; }
+
+        IDbSet<ShoesPublicationDetail> ShoesPublicationDetail { get; set; }
+
         int SaveChanges();
     }
 }

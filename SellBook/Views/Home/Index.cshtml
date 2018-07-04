@@ -5,13 +5,14 @@
 
 }
 
+@Html.Partial("SearchPartial", Model.SearchModel)
+
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
-
-<div class="row">
+<div class="row content">
     @Html.Partial("HomePublicationPartial", Model.PublicationPartial)
 </div>
 <div class="row">
@@ -35,3 +36,77 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.border').hover(function (e) {
+                //$(this).css('width', '220px');
+                //$(this).css('height', '260px');
+                $(this).css('border', '2px solid blue');
+            }, function (e) {
+                //$(this).css('width', '200px');
+                //$(this).css('height', '250px');
+                $(this).css('border', '1px solid black');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.glyphicon4eto').click(function (e) {
+                console.log($(e)[0].currentTarget.id);
+                var id = $(e)[0].currentTarget.id;
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/AddFavourite",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{"id":"' + id + '"}',
+                    dataType: "html",
+
+                    success: function (result, status, xhr) {
+                        $('body').html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+
+    <script>
+        $('.glyphicon-heart-empty').hover(function (e) {
+            $(this).css('cursor', 'pointer');
+        }, function (e) {
+            $(this).css('cursor', 'defaut');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.glyphicon4etoDelete').click(function (e) {
+                console.log($(e)[0].currentTarget.id);
+                var id = $(e)[0].currentTarget.id;
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/RemoveFavourite",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{"id":"' + id + '"}',
+                    dataType: "html",
+
+                    success: function (result, status, xhr) {
+                        $('body').html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+}

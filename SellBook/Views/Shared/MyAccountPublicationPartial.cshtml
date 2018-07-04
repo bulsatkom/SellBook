@@ -1,0 +1,73 @@
+﻿@model SellBook.Models.Account.PublicationDetailsViewModel
+
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#active" aria-controls="active" role="tab" data-toggle="tab">Активни(@Model.ActivePublication.Count)</a></li>
+        <li role="presentation"><a href="#arhived" aria-controls="arhived" role="tab" data-toggle="tab">Архивирани(@Model.ArchivedPublication.Count)</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="active">
+            <div class="row">
+                <div class="col-md-2">Дата</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">Заглавие</div>
+                <div class="col-md-2">Цена</div>
+                <div class="col-md-2">Съобщения</div>
+            </div>
+            @if (Model.ActivePublication.Count > 0)
+            {
+                foreach (var publication in Model.ActivePublication)
+                {
+                    <div class="row bordered">
+                        <div class="col-md-2">@publication.AddedOn</div>
+                        <div class="col-md-2"><img src="@Url.Content(publication.ImageName)" width="150" height="150" /></div>
+                        <div class="col-md-4"><b>@publication.Title</b></div>
+                        <div class="col-md-2">@publication.Price</div>
+                        <div class="col-md-2">@publication.MessagesNumbers</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center text-danger">Нямате добавени Активни Обяви</div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="arhived">
+            <div class="row">
+                <div class="col-md-2">Дата</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">Заглавие</div>
+                <div class="col-md-2">Цена</div>
+                <div class="col-md-2">Съобщения</div>
+            </div>
+
+            @if (Model.ArchivedPublication.Count > 0)
+            {
+                foreach (var publication in Model.ArchivedPublication)
+                {
+                    <div class="row bordered">
+                        <div class="col-md-2">@publication.AddedOn</div>
+                        <div class="col-md-2"><img src="@Url.Content(publication.ImageName)" width="150" height="150" /></div>
+                        <div class="col-md-3"><b>@publication.Title</b></div>
+                        <div class="col-md-1">@publication.Price</div>
+                        <div class="col-md-2">@publication.MessagesNumbers</div>
+                        <div class="col-md-2">
+                            @Ajax.ActionLink("Активирай Обявата", "ÄctivePublication", "Publication", new { id = publication.PublicationID }, new AjaxOptions()
+                                         {
+                                             HttpMethod = "GET",
+                                             InsertionMode = InsertionMode.Replace,
+                                             UpdateTargetId = "arhived",
+                                         }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                }
+            }
+            else
+            {
+                <div class="text-center text-danger">Нямате добавени Архивирани Обяви</div>
+            }
+        </div>
+    </div>
+</div>

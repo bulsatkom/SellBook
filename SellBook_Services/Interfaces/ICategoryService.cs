@@ -11,8 +11,10 @@ namespace SellBook_Services.Interfaces
     {
         bool IsContains(string name);
 
-        void Add(string name);
+        void Add(string name, string Color, string ImageSrc);
 
         ICollection<Category> GetAll();
+
+        string GetCategoryNameById(Guid id);
     }
 }

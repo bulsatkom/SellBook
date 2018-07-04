@@ -11,5 +11,11 @@ namespace SellBook.Areas.Admin.Models.Administration
         [Required]
         [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
+
+        [Required]
+        public string Color { get; set; }
+
+        [Required]
+        public string ImageSrc { get; set; }
     }
 }

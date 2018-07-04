@@ -1,0 +1,24 @@
+﻿@model SellBook.Models.Publication.AddPublicationViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Initial.Price, new { @class = "col-md-2 control-label" })
+    <div class="col-md-3">
+        @Html.TextBoxFor(m => m.Initial.Price, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.LabelFor(m => m.Initial.IsContacting, new { @class = "col-md-1 control-label" })
+        @Html.CheckBoxFor(m => m.Initial.IsContacting, new { @Class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Initial.Condition, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.Initial.Condition, Model.Initial.ConditionCollection, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Initial.Delivery, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.Initial.Delivery, Model.Initial.DeliveryCollection, new { @class = "form-control" })
+    </div>
+</div>

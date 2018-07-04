@@ -25,20 +25,24 @@ namespace SellBook_Data
         [StringLength(5000, MinimumLength = 20)]
         public string Description { get; set; }
 
+        [Required]
         public string ApplicationUserId { get; set; }
 
+        [Required]
         public Guid CategoryId { get; set; }
 
+        public Category Category { get; set; }
+
+        [Required]
         public Guid SubCategoryId { get; set; }
 
-        [Required]
-        public double Price { get; set; }
-
-        [Required]
-        public bool IsContracting { get; set; }
+        public Guid? SubSubCategoryId { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
+        [Required]
+        public Guid PublicationDetailsId { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -51,6 +55,16 @@ namespace SellBook_Data
 
         //TODOs: fix this sh**....
         public int AddAssFavourite { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public bool IsArchived { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public Guid RegionId { get; set; }
+
+        public Guid CityId { get; set; }
 
         public ICollection<Image> Images
         {

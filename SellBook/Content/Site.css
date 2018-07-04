@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.border{
+    width: 200px;
+    height:250px;
+    border: 1px solid black;
+    margin-left: 4px;
+    margin-bottom: 4px;
+    padding-top: 4px;
+    background-color:lightyellow;
+    /*padding-bottom: 5px;*/
+}
+
+#Search{
+    background-color:deepskyblue;
+    padding: 10px 5px;
+}
+
+.bordered{
+    border:1px solid black;
+}
+
+.bordered:hover{
+    border: 1px solid blue;
+}
+
+.panelche{
+
+}

@@ -9,6 +9,13 @@ namespace SellBook_Data
 {
     public class SubCategory
     {
+        private ICollection<SubSubCategory> subcategories;
+
+        public SubCategory()
+        {
+            this.subcategories = new HashSet<SubSubCategory>();
+        }
+
         public Guid Id { get; set; }
 
         [Required]
@@ -16,5 +23,17 @@ namespace SellBook_Data
         public string Name { get; set; }
 
         public Guid CategoryId { get; set; }
+
+        public virtual ICollection<SubSubCategory> Subcategories
+        {
+            get
+            {
+                return this.subcategories;
+            }
+            set
+            {
+                this.subcategories = value;
+            }
+        }
     }
 }

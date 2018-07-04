@@ -16,7 +16,6 @@ namespace SellBook_Data
         [Required]
         public bool IsCity { get; set; }
 
-
         [Required]
         [StringLength(50, MinimumLength =4)]
         public string Name { get; set; }

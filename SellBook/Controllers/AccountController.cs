@@ -12,6 +12,8 @@ using SellBook.Models;
 using SellBook_Data;
 using SellBook_Services.Interfaces;
 using System.IO;
+using SellBook.Models.Account;
+using System.Collections.Generic;
 
 namespace SellBook.Controllers
 {
@@ -23,12 +25,28 @@ namespace SellBook.Controllers
 
         private readonly ICityService cityService;
         private readonly IRegionService RegionService;
+        private readonly IPublicationService publicationService;
+        private readonly IUserService userService;
+        private readonly IChatService chatService;
+        private readonly ICategoryService categoryService;
+        private readonly ISubCategoryService subCategoryService;
+        private readonly ISubSubCategoryService subSubCategoryService;
+        private readonly IPublicationDetailsService publicationDetailsService;
 
-
-        public AccountController(ICityService cityService, IRegionService RegionService)
+        public AccountController(ICityService cityService, IRegionService RegionService,
+            IPublicationService publicationService, IUserService userService, IChatService chatService,
+            ICategoryService categoryService, ISubCategoryService subCategoryService,
+            ISubSubCategoryService subSubCategoryService, IPublicationDetailsService publicationDetailsService)
         {
             this.cityService = cityService;
             this.RegionService = RegionService;
+            this.publicationService = publicationService;
+            this.userService = userService;
+            this.chatService = chatService;
+            this.categoryService = categoryService;
+            this.subCategoryService = subCategoryService;
+            this.subSubCategoryService = subSubCategoryService;
+            this.publicationDetailsService = publicationDetailsService;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -59,6 +77,95 @@ namespace SellBook.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ActionResult MyAccount()
+        {
+            List<Publication> userPublications = this.publicationService.GetPublicatrionsForUser(User.Identity.GetUserId()).ToList();
+            var model = new MyAccountViewModel() {publications = new PublicationDetailsViewModel() };
+            var modelPublicationsActive = new List<MyPublicationsViewModel>();
+            var modelPublicationsArchived = new List<MyPublicationsViewModel>();
+
+
+            for (int i = 0; i < userPublications.Count; i++)
+            {
+                string imageName = userPublications[i].Images.Select(x => x.Name).FirstOrDefault();
+                string categoryName = this.categoryService.GetCategoryNameById(userPublications[i].CategoryId);
+                string subCategoryName = this.subCategoryService.GetSubCategoryNameById(userPublications[i].SubCategoryId);
+                string SubSubCategoryName = userPublications[i].SubSubCategoryId.HasValue ? this.subSubCategoryService.GetNameById(userPublications[i].SubSubCategoryId.Value) : null;
+
+                var currentPublication = new MyPublicationsViewModel()
+                {
+                    AddedOn = userPublications[i].AddedOn,
+                    AddedAsFavourite = userPublications[i].AddAssFavourite,
+                    ImageName = "~/Content/Images/" + this.userService.GetUserNameById(userPublications[i].ApplicationUserId) + "/" + userPublications[i].Id + "/" + imageName,
+                    isActive = userPublications[i].IsActive,
+                    PublicationID = userPublications[i].Id,
+                    Title = userPublications[i].Title,
+                    ViewPhone = userPublications[i].ViewPhone,
+                    Views = userPublications[i].Views,
+                    MessagesNumbers = this.chatService.GetChatCountForPublication(userPublications[i].Id),
+                };
+
+                if (categoryName == "Електроника")
+                {
+                    currentPublication.Price = this.publicationDetailsService.GetPriceByIdElectronic(userPublications[i].PublicationDetailsId);
+                }
+                else if (categoryName == "Животни")
+                {
+                    currentPublication.Price = this.publicationDetailsService.GetPriceByIdAnimals(userPublications[i].PublicationDetailsId);
+                }
+                else if (categoryName == "за бебето и детето")
+                {
+                    if (subCategoryName == "Обувки" || subCategoryName == "Дрехи")
+                    {
+                        currentPublication.Price = this.publicationDetailsService.GetPriceByIdChildrens(userPublications[i].PublicationDetailsId);
+                    }
+                    else
+                    {
+                        currentPublication.Price = this.publicationDetailsService.GetPriceByIdInitial(userPublications[i].PublicationDetailsId);
+                    }
+                }
+                else if (categoryName == "Екскурзии и почивки")
+                {
+                    currentPublication.Price = this.publicationDetailsService.GetPriceByIdHolidays(userPublications[i].PublicationDetailsId);
+
+                }
+                else if (categoryName == "Мода")
+                {
+
+                    if ((subCategoryName == "Мъжки Дрехи" || subCategoryName == "Женски Дрехи"))
+                    {
+                        currentPublication.Price = this.publicationDetailsService.GetPriceByIdClothes(userPublications[i].PublicationDetailsId);
+                    }
+                    else if (subCategoryName == "Мъжки Обувки" || subCategoryName == "Женски Обувки")
+                    {
+                        currentPublication.Price = this.publicationDetailsService.GetPriceByIdShoes(userPublications[i].PublicationDetailsId);
+                    }
+                    else
+                    {
+                        currentPublication.Price = this.publicationDetailsService.GetPriceByIdInitial(userPublications[i].PublicationDetailsId);
+                    }
+                }
+                else
+                {
+                    currentPublication.Price = this.publicationDetailsService.GetPriceByIdInitial(userPublications[i].PublicationDetailsId);
+                }
+
+                if (userPublications[i].IsActive)
+                {
+                    modelPublicationsActive.Add(currentPublication);
+                }
+                else
+                {
+                    modelPublicationsArchived.Add(currentPublication);
+                }
+            }
+
+            model.publications.ActivePublication = modelPublicationsActive;
+            model.publications.ArchivedPublication = modelPublicationsArchived;
+
+            return this.View(model);
         }
 
         //
@@ -170,14 +277,14 @@ namespace SellBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FirstName + " " + model.LastName, Email = model.Email,
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
                     CityId = model.CityId, FirstName = model.FirstName, LastName = model.LastName,
                     PhoneNumber = model.PhoneNumber, RegionId = model.RegionId };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    Directory.CreateDirectory(Server.MapPath("/") + "/Images/" + user.UserName);
+                    Directory.CreateDirectory(Server.MapPath("/") + "/Content" + "/Images/" + user.UserName);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

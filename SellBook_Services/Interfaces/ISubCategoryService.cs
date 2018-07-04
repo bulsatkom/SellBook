@@ -14,5 +14,7 @@ namespace SellBook_Services.Interfaces
         void Add(string Name, Guid CategoryId);
 
         ICollection<SubCategory> GetAllByCategoryId(Guid CategoryId);
+
+        string GetSubCategoryNameById(Guid id);
     }
 }

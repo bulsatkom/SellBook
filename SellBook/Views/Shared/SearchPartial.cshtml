@@ -1,0 +1,33 @@
+﻿@model SellBook.Models.Shared.SearchPartialViewModel
+
+@using (Html.BeginForm("Search", "Publication", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.HiddenFor(x => x.CategoriesCollection)
+    @Html.HiddenFor(x => x.RegionsCollection)
+    @Html.HiddenFor(x => x.PublicationCount)
+    @Html.HiddenFor(x => x.GetCategory)
+    <div id="Search">
+        <div class="row">
+            <div class="input-group col-md-4">
+                <span class="input-group-addon glyphicon glyphicon-search" style="background-color:white" id="basic-addon1" aria-hidden="true"></span>
+                @Html.TextBoxFor(m => m.Query, new { @class = "form-control", placeholder = "Търси в над " + Model.PublicationCount + " обяви", aria_describedby = "basic-addon1" })
+            </div>
+            <div class="col-md-3">
+            @*<label for="Region"><span class="glyphicon glyphicon-tag" style="background-color:white" aria-hidden="true"></span></label>*@
+            @Html.DropDownListFor(x => x.Region, Model.RegionsCollection, new { @class = "form-control" })</div>
+            @if (Model.GetCategory)
+            {
+                <div class="col-md-4">
+                    @Html.DropDownListFor(x => x.CategoryId, Model.CategoriesCollection, new { @class = "form-control" });
+                </div>
+            }
+
+            <button class="btn btn-success" type="submit">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Търси
+            </button>
+        </div>
+    </div>
+}

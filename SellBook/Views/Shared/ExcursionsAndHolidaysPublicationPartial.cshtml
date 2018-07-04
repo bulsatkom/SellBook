@@ -1,0 +1,12 @@
+﻿@model SellBook.Models.Publication.AddPublicationViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.holiday.Price, new { @class = "col-md-2 control-label" })
+    <div class="col-md-3">
+        @Html.TextBoxFor(m => m.holiday.Price, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.LabelFor(m => m.holiday.IsContacting, new { @class = "col-md-1 control-label" })
+        @Html.CheckBoxFor(m => m.holiday.IsContacting, new { @Class = "form-control" })
+    </div>
+</div>

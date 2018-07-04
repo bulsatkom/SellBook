@@ -1,0 +1,37 @@
+﻿@model SellBook.Models.Publication.AddPublicationViewModel
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.SalaryFrom, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Work.SalaryFrom, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.SalaryTo, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Work.SalaryTo, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.IsContracting, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.CheckBoxFor(m => m.Work.IsContracting, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.Bussyness, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.Work.Bussyness, Model.Work.BussynessCollection, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.ForInvalids, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.CheckBoxFor(m => m.Work.ForInvalids, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Work.Kind, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.Work.Kind,Model.Work.KindCollection, new { @class = "form-control" })
+    </div>
+</div>

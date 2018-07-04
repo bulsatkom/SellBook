@@ -14,6 +14,10 @@ namespace SellBook.App_Start
     using SellBook_Services.Interfaces;
     using SellBook_Services;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.Owin.Security;
+    using Services.Interfaces;
+    using Services;
 
     public static class NinjectWebCommon 
     {
@@ -74,6 +78,17 @@ namespace SellBook.App_Start
             kernel.Bind<ISubCategoryService>().To<SubCategoryService>();
             kernel.Bind<IImageService>().To<ImageService>();
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IWorkPublicationDetailService>().To<WorkPublicationDetailService>();
+            kernel.Bind<ISubSubCategoryService>().To<SubSubCategoryService>();
+            kernel.Bind<IFavouritePublicationService>().To<FavouritePublicationService>();
+            kernel.Bind<IPublicationDetailsService>().To<PublicationDetailsService>();
+            kernel.Bind<IChatService>().To<ChatService>();
+            kernel.Bind<IPublicationModelService>().To<PublicationModelService>();
+    //        kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
+    //        kernel.Bind<UserManager<ApplicationUser>>().ToSelf();
+    //        kernel.Bind<IAuthenticationManager>().ToMethod(
+    //c =>
+    //    HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
         }        
     }
 }

@@ -1,0 +1,25 @@
+﻿@model SellBook.Models.Publication.PublicationDetailViewModel
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">@Model.Title</h3>
+            </div>
+            <div class="panel-body text-center">
+                <img src="@Url.Content(Model.MainImageSrc)" width="600" height="400" />
+                <div class="col-md-6">
+                    <div class="text-left panelche"><span class="glyphicon glyphicon-tag" style="color: deepskyblue" aria-hidden="true"></span>@Model.City</div>
+                </div>
+                <div class="col-md-6 text-left">
+                    Добавено на 
+                </div>
+                <div>@Model.Description</div>
+                @foreach (var image in Model.ImagesUrls)
+                {
+                    <img src="@Url.Content(image)" width="600" height="400" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

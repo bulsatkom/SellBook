@@ -1,10 +1,9 @@
 ﻿@model SellBook.Models.Publication.AddPublicationViewModel
 
-@using (Html.BeginForm("AddPublication", "Publication", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-    <h2>@ViewBag.Title.</h2>
-
-   
+<div id="PublicationContent">
+    @using (Html.BeginForm("AddPublication", "Publication", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        <h2>@ViewBag.Title.</h2>
         @Html.AntiForgeryToken()
         <h4>Create a new account.</h4>
         <hr />
@@ -12,7 +11,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", id = "Title" })
             </div>
         </div>
         <div class="form-group">
@@ -22,33 +21,49 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.IsContactable, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.CheckBoxFor(m => m.IsContactable, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.CategoryId, Model.Categories, new { @class = "form-control", id = "Country" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.SubCategoryId, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.SubCategoryId, Model.SubCategories, new { @class = "form-control", @id = "Region" })
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+
+    <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.CategoryId, Model.Categories, new { @class = "form-control", id = "Country" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SubCategoryId, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.SubCategoryId, Model.SubCategories, new { @class = "form-control", @id = "Region" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SubSubCategoryId, new { @class = "col-md-2 control-label", @style = "display:none", @id = "subSubCategoryIdLabel" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.SubSubCategoryId, Model.SubSubCategories, new { @class = "form-control", @style = "display:none", @id = "subSubCategoryId" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Излезте</button>
+                        <button type="button" class="btn btn-primary submit" disabled="disabled" data-dismiss="modal">Запази Промените</button>
+                        @*$('.submit').prop("disabled", false);*@
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -58,46 +73,111 @@
                 @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
             </div>
         </div>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-target
-        </button>
-        <div class="collapse" id="collapseExample">
-            <div class="well">
-                4o4o
-            </div>
-        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" class="btn btn-default" value="Register" />
             </div>
         </div>
+        <div id="dataDiv"></div>
     }
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
+<div id="test">Testovo</div>
+<button id="button">Press</button>
 
-<script type="text/javascript">
-            $('#Country').change(function () {
-                var selectedCountry = $("#Country").val();
-                var regionsSelect = $('#Region');
-                regionsSelect.empty();
-                if (selectedCountry != null && selectedCountry != '') {
-                    $.getJSON('@Url.Action("GetRegions")', { iso3: selectedCountry }, function (regions) {
-                        if (regions != null && !jQuery.isEmptyObject(regions))
-                        {
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/junobtrusive")
+
+    <script type="text/javascript">
+        $('#Country').change(function () {
+            var selectedCountry = $("#Country").val();
+            var regionsSelect = $('#Region');
+            regionsSelect.empty();
+            if (selectedCountry != null && selectedCountry != '') {
+                $.getJSON('@Url.Action("GetRegions")', { iso3: selectedCountry }, function (regions) {
+                    if (regions != null && !jQuery.isEmptyObject(regions)) {
+                        regionsSelect.append($('<option/>', {
+                            value: null,
+                            text: ""
+                        }));
+                        $.each(regions, function (index, region) {
                             regionsSelect.append($('<option/>', {
-                                value: null,
-                                text: ""
+                                value: region.Value,
+                                text: region.Text
                             }));
-                            $.each(regions, function (index, region) {
-                                regionsSelect.append($('<option/>', {
-                                    value: region.Value,
-                                    text: region.Text
-                                }));
-                            });
-                        };
-                    });
-                }
+                        });
+                    };
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#button').hover((function (e) {
+                $('#test').css('background-color', 'aqua');
+            }), function (e){
+                $('#test').css('background-color', 'yellow');
             });
-</script>
-    }
+        });
+    </script>
+    <script>
+        $('#subSubCategoryId').change(function () {
+            var selectedVal = $('#subSubCategoryId').val();
+            if (selectedVal != null && selectedVal != '') {
+                submit.prop("disabled", false);
+            }
+        });
+
+        $('#Region').change(function () {
+            var submit = $('.submit');
+            var selectedCountry = $("#Region").val();
+            var regionsSelect = $('#subSubCategoryId');
+            regionsSelect.empty();
+            if (selectedCountry != null && selectedCountry != '') {
+                $.getJSON('@Url.Action("GetSubSubCategories")', { iso3: selectedCountry }, function (regions) {
+                    if (regions != null && !jQuery.isEmptyObject(regions)) {
+                        regionsSelect.append($('<option/>', {
+                            value: null,
+                            text: ""
+                        }));
+                        $.each(regions, function (index, region) {
+                            regionsSelect.append($('<option/>', {
+                                value: region.Value,
+                                text: region.Text
+                            }));
+                        });
+
+                        $('#subSubCategoryIdLabel').show();
+                        $('#subSubCategoryId').show();
+                    }
+                    else {
+                        submit.prop("disabled", false);
+                    };
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".submit").click(function (e) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Publication/Details",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{"categoryId":"' + $("#Country").val() + '","subCategoryId":"' + $("#Region").val() + '"}',
+                    dataType: "html",
+
+                    success: function (result, status, xhr) {
+                        $("#dataDiv").html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+}

@@ -58,20 +58,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="ChatService.cs" />
     <Compile Include="CityService.cs" />
+    <Compile Include="ClothesPublicationDetailService.cs" />
+    <Compile Include="FavouritePublicationService.cs" />
     <Compile Include="ImageService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\IChatService.cs" />
     <Compile Include="Interfaces\ICityService.cs" />
+    <Compile Include="Interfaces\IClothesPublicationDetailService.cs" />
+    <Compile Include="Interfaces\IFavouritePublicationService.cs" />
     <Compile Include="Interfaces\IImageService.cs" />
     <Compile Include="Interfaces\IPublicationService.cs" />
     <Compile Include="Interfaces\IRegionService.cs" />
     <Compile Include="Interfaces\ISubCategoryService.cs" />
+    <Compile Include="Interfaces\ISubSubCategoryService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Interfaces\IWorkPublicationDetailService.cs" />
+    <Compile Include="Interfaces\IPublicationDetailsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicationDetailsService.cs" />
     <Compile Include="PublicationService.cs" />
     <Compile Include="RegionService.cs" />
     <Compile Include="SubCategoryService.cs" />
+    <Compile Include="SubSubCategoryService.cs" />
     <Compile Include="UserService.cs" />
+    <Compile Include="WorkPublicationDetailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SellBook_Data\SellBook_Data.csproj">

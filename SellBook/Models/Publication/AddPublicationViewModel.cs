@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SellBook.Models.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace SellBook.Models.Publication
         {
             this.Categories = new List<SelectListItem>();
             this.SubCategories = new List<SelectListItem>();
+            this.SubSubCategories = new List<SelectListItem>();
         }
 
         [Required]
@@ -33,6 +35,9 @@ namespace SellBook.Models.Publication
         public Guid SubCategoryId { get; set; }
 
         [Required]
+        public Guid SubSubCategoryId { get; set; }
+
+        [Required]
         [Display(Name = "Описание на обявата")]
         [StringLength(1500, MinimumLength = 30)]
         public string Description { get; set; }
@@ -42,16 +47,32 @@ namespace SellBook.Models.Publication
         [Display(Name = "Телефоннен номер за обявата")]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [Display(Name = "Цена")]
-        public double Price { get; set; }
+        public ServicePublicationPartialViewModel Service { get; set; }
 
-        [Required]
-        [Display(Name = "По Договаряне")]
-        public bool IsContactable { get; set; }
+        public WorkPublicationPartialViewModel Work { get; set; }
+
+        public ElectronicsPublicationPartialViewModel Electronic { get; set; }
+
+        public AnimalsPublicationPartialViewModel Animal { get; set; }
+
+        public ChildrensPublicationPartialViewModel children { get; set; }
+
+        public ClothesPublicationPartialViewModel clothes { get; set; }
+
+        public InitialPublicationPartialViewModel Initial { get; set; }
+
+        public ShoesPublicationPartialViewModel shoe { get; set; }
+
+        public ExcursionsAndHolidaysPublicationPartialViewModel holiday { get; set; }
+
+        public bool IsWork { get; set; }
+
+        public bool IsService { get; set; }
 
         public ICollection<SelectListItem> Categories { get; set; }
 
         public ICollection<SelectListItem> SubCategories { get; set; }
+
+        public ICollection<SelectListItem> SubSubCategories { get; set; }
     }
 }

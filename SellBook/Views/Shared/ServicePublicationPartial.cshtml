@@ -1,0 +1,8 @@
+﻿@model SellBook.Models.Publication.AddPublicationViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.children.Number, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.children.Number, Model.children.NumberCollection, new { @class = "form-control" })
+    </div>
+</div>

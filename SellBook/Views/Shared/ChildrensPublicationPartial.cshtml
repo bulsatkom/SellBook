@@ -1,0 +1,39 @@
+﻿@model SellBook.Models.Publication.AddPublicationViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.children.Price, new { @class = "col-md-2 control-label" })
+    <div class="col-md-3">
+        @Html.TextBoxFor(m => m.children.Price, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.LabelFor(m => m.children.IsContacting, new { @class = "col-md-1 control-label" })
+        @Html.CheckBoxFor(m => m.children.IsContacting, new { @Class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.children.Delivery, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.children.Delivery, Model.children.DeliveryCollection, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.children.Condition, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.children.Condition, Model.children.ConditionCollection, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.children.SuitableFor, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.children.SuitableFor, Model.children.SuitableForCollection, new { @class = "form-control" })
+    </div>
+</div>
+@if (Model.children.ForShoes)
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.children.Number, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.children.Number, Model.children.NumberCollection, new { @class = "form-control" })
+        </div>
+    </div>
+}

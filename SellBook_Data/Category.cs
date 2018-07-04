@@ -22,6 +22,12 @@ namespace SellBook_Data
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        public string ImageSrc { get; set; }
+
+        [Required]
+        public string Color { get; set; }
+
        public virtual ICollection<SubCategory> Subcategories
         {
             get

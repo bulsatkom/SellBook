@@ -14,15 +14,22 @@ namespace SellBook_Services
 
         public CategoryService(ISellbookDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Context cannot be null or empty");
+            }
+
             this.context = context;
         }
 
-        public void Add(string name)
+        public void Add(string name, string Color, string ImageSrc)
         {
             this.context.Category.Add(new Category()
             {
                 Id = Guid.NewGuid(),
                 Name = name,
+                Color = Color,
+                ImageSrc = ImageSrc
             });
 
             this.context.SaveChanges();
@@ -31,6 +38,11 @@ namespace SellBook_Services
         public ICollection<Category> GetAll()
         {
             return this.context.Category.ToList();
+        }
+
+        public string GetCategoryNameById(Guid id)
+        {
+            return this.context.Category.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
         }
 
         public bool IsContains(string name)

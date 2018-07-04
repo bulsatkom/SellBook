@@ -106,7 +106,7 @@ namespace SellBook.Areas.Admin.Controllers
             {
                 if (!this.categoryService.IsContains(model.Name))
                 {
-                    this.categoryService.Add(model.Name);
+                    this.categoryService.Add(model.Name, model.Color, model.ImageSrc);
 
                     return this.RedirectToAction("Index");
                 }

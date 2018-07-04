@@ -14,6 +14,11 @@ namespace SellBook_Services
 
         public SubCategoryService(ISellbookDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Context cannot be null or empty");
+            }
+
             this.context = context;
         }
 
@@ -32,6 +37,11 @@ namespace SellBook_Services
         public ICollection<SubCategory> GetAllByCategoryId(Guid CategoryId)
         {
             return this.context.SubCategory.Where(x => x.CategoryId == CategoryId).ToList();
+        }
+
+        public string GetSubCategoryNameById(Guid id)
+        {
+            return this.context.SubCategory.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
         }
 
         public bool IsContains(string Name, Guid CategoryId)

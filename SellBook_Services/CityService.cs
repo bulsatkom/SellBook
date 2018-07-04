@@ -14,6 +14,11 @@ namespace SellBook_Services
 
         public CityService(ISellbookDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Context cannot be null or empty");
+            }
+
             this.context = context;
         }
 
@@ -35,6 +40,19 @@ namespace SellBook_Services
             var cities = this.context.City.Where(x => x.RegionId == Id).ToList();
 
             return cities;
+        }
+
+        public City GetCityById(Guid id)
+        {
+            return this.context.City.FirstOrDefault(x => x.Id == id);
+        }
+
+        public string GetNameById(Guid Id)
+        {
+            return this.context.City
+                .Where(x => x.Id == Id)
+                .Select(x => x.Name)
+                .FirstOrDefault();
         }
 
         public bool IsContains(Guid RegionId, string cityName, bool IsVillage)

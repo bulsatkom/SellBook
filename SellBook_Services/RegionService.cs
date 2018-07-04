@@ -14,6 +14,11 @@ namespace SellBook_Services
 
         public RegionService(ISellbookDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Context cannot be null or empty");
+            }
+
             this.context = context;
         }
 
@@ -31,6 +36,14 @@ namespace SellBook_Services
         public ICollection<Region> GetAll()
         {
             return this.context.Region.ToList();
+        }
+
+        public string GetNameById(Guid id)
+        {
+            return this.context.Region
+                .Where(x => x.Id == id)
+                .Select(x => x.Name)
+                .FirstOrDefault();
         }
 
         public bool IsContains(string name)

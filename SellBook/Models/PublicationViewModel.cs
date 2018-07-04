@@ -14,5 +14,9 @@ namespace SellBook.Models
         public string Image { get; set; }
 
         public double Price { get; set; }
+
+        public bool isLiked { get; set; }
+
+        public string FullTitle { get; set; }
     }
 }

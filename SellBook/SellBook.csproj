@@ -198,13 +198,32 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account\MyAccountViewModel.cs" />
+    <Compile Include="Models\Account\MyPublicationsViewModel.cs" />
+    <Compile Include="Models\Account\PublicationDetailsViewModel.cs" />
     <Compile Include="Models\PublicationViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Publication\AddPublicationViewModel.cs" />
+    <Compile Include="Models\Publication\DetailsModel.cs" />
     <Compile Include="Models\Publication\DetailsViewModel.cs" />
+    <Compile Include="Models\Publication\PublicationDetailViewModel.cs" />
+    <Compile Include="Models\Publication\PublicationsDetailsViewModel.cs" />
+    <Compile Include="Models\Publication\PublicationsViewModel.cs" />
+    <Compile Include="Models\Shared\AnimalsPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ChildrensPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ClothesPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ElectronicsPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ExcursionsAndHolidaysPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\InitialPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\SearchPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ServicePublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\ShoesPublicationPartialViewModel.cs" />
+    <Compile Include="Models\Shared\WorkPublicationPartialViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IPublicationModelService.cs" />
+    <Compile Include="Services\PublicationModelService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +245,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -270,6 +291,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\HomePublicationPartial.cshtml" />
     <Content Include="Views\Publication\AddPublication.cshtml" />
+    <Content Include="Views\Shared\WorkPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\ServicePublicationPartial.cshtml" />
+    <Content Include="Views\Publication\Index.cshtml" />
+    <Content Include="Views\Shared\ChildrensPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\ClothesPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\ElectronicsPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\ExcursionsAndHolidaysPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\ShoesPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\AnimalsPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\InitialPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\SearchPartial.cshtml" />
+    <Content Include="Views\Publication\Publications.cshtml" />
+    <Content Include="Views\Shared\PublicationsPartial.cshtml" />
+    <Content Include="Views\Account\MyAccount.cshtml" />
+    <Content Include="Views\Shared\MyAccountPublicationPartial.cshtml" />
+    <Content Include="Views\Shared\MyAccountArchivedPartial.cshtml" />
+    <Content Include="Views\Publication\PublicationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
